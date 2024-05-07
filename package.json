@@ -6,7 +6,7 @@
   "packageManager": "pnpm@9.1.0",
   "scripts": {
     "build": "remix vite:build",
-    "deploy": "pnpm run build && wrangler pages deploy",
+    "deploy": "pnpm run build && wrangler pages deploy ./build/client",
     "dev": "remix vite:dev",
     "start": "wrangler pages dev ./build/client",
     "check": "concurrently 'pnpm run lint:*' 'tsc'",
