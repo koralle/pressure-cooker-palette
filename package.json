@@ -3,7 +3,7 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "packageManager": "pnpm@9.1.0",
+  "packageManager": "pnpm@9.1.1",
   "scripts": {
     "build": "remix vite:build",
     "deploy": "pnpm run build && wrangler pages deploy ./build/client",
