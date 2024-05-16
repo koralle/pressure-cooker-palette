@@ -1,5 +1,8 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import eslint from '@eslint/js'
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import testingLibrary from 'eslint-plugin-testing-library'
 import vitest from 'eslint-plugin-vitest'
 import globals from 'globals'
 import {
@@ -9,11 +12,23 @@ import {
   plugin as tseslintPlugin,
 } from 'typescript-eslint'
 
-const compat = new FlatCompat({})
+const reactCompat = new FlatCompat({
+  recommendedConfig: pluginReact.configs.recommended,
+})
+
+const reactHooksCompat = new FlatCompat({
+  recommendedConfig: pluginReactHooks.configs.recommended,
+})
+
+const testingLibraryCompat = new FlatCompat({
+  recommendedConfig: {
+    extends: testingLibrary.configs.recommended,
+  },
+})
 
 const baseConfigs = [
   {
-    files: ['**/*.test.ts', '**/*.test.tsx'],
+    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
     languageOptions: {
       parser: tseslintParser,
       parserOptions: {
@@ -37,22 +52,25 @@ const baseConfigs = [
 ]
 
 const reactConfigs = [
-  ...compat.extends('plugin:react/recommended'),
-  ...compat.extends('plugin:react-hooks/recommended'),
   {
-    files: ['**/*.test.ts', '**/*.test.tsx'],
-    rules: {
-      'react/react-in-jsx-scope': 'off',
-      'react/no-unescaped-entities': 'off',
-      'react/jsx-curly-brace-presence': 'error',
-      'react/jsx-no-leaked-render': 'error',
-      'react-hooks/rules-of-hooks': 'off',
-    },
-    settings: {
-      react: {
-        version: 'detect',
+    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
+    ...reactCompat.config({
+      settings: {
+        react: {
+          version: 'detect',
+        },
       },
-    },
+    })[0],
+  },
+  {
+    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
+    ...reactHooksCompat.config({
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
+    })[0],
   },
 ]
 
@@ -67,15 +85,25 @@ const vitestConfigs = [
 ]
 
 const testingLibraryConfigs = [
-  ...compat.extends('plugin:testing-library/react'),
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],
+    ...testingLibraryCompat.config({})[0],
   },
 ]
 
 export default tseslintConfig(
   {
-    ignores: ['.next', '**/dist', 'node_modules', 'build', 'pnpm-lock.yaml'],
+    ignores: [
+      '.next',
+      '**/dist',
+      'node_modules',
+      'build',
+      'pnpm-lock.yaml',
+      'app/entry.server.tsx',
+      'functions',
+      'load-context.ts',
+      'worker-configuration.d.ts',
+    ],
   },
   ...baseConfigs,
   ...reactConfigs,
