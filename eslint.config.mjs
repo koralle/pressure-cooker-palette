@@ -1,5 +1,8 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import eslint from '@eslint/js'
+import pluginReact from 'eslint-plugin-react'
+import pluginReactHooks from 'eslint-plugin-react-hooks'
+import testingLibrary from 'eslint-plugin-testing-library'
 import vitest from 'eslint-plugin-vitest'
 import globals from 'globals'
 import {
@@ -8,11 +11,6 @@ import {
   parser as tseslintParser,
   plugin as tseslintPlugin,
 } from 'typescript-eslint'
-import pluginReact from 'eslint-plugin-react'
-import pluginReactHooks from 'eslint-plugin-react-hooks'
-import testingLibrary from 'eslint-plugin-testing-library'
-
-const compat = new FlatCompat({})
 
 const reactCompat = new FlatCompat({
   recommendedConfig: pluginReact.configs.recommended,
