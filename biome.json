@@ -13,7 +13,9 @@
       "public",
       ".next",
       "entry.server.tsx",
-      "build"
+      "build",
+      "worker-configuration.d.ts",
+      "load-context.ts"
     ]
   },
   "linter": {
