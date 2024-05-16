@@ -18,8 +18,8 @@ importers:
         specifier: ^2.9.2
         version: 2.9.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.4.5)
       isbot:
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^5.1.6
+        version: 5.1.6
       miniflare:
         specifier: ^3.20240419.1
         version: 3.20240419.1
@@ -2490,8 +2490,8 @@ packages:
   isarray@2.0.5:
     resolution: {integrity: sha512-xHjhDr3cNBK0BzdUJSPXZntQUx/mwMS5Rw4A7lPJ90XGAO6ISP/ePDNuo0vhqOZU+UD5JoodwCAAoZQd3FeAKw==}
 
-  isbot@4.4.0:
-    resolution: {integrity: sha512-8ZvOWUA68kyJO4hHJdWjyreq7TYNWTS9y15IzeqVdKxR9pPr3P/3r9AHcoIv9M0Rllkao5qWz2v1lmcyKIVCzQ==}
+  isbot@5.1.6:
+    resolution: {integrity: sha512-Phksj1A0dBP/M/5xeOx0zWemKlZRQvrbNzI19/HWso0uodiOcR8YYCXN60IdzwbKsGj5LnxPkMy6FuBtgckMNw==}
     engines: {node: '>=18'}
 
   isexe@2.0.0:
@@ -6736,7 +6736,7 @@ snapshots:
 
   isarray@2.0.5: {}
 
-  isbot@4.4.0: {}
+  isbot@5.1.6: {}
 
   isexe@2.0.0: {}
 
