@@ -5,17 +5,16 @@
   },
   "files": {
     "ignore": [
-      "node_modules",
-      "functions",
+      ".cache",
       ".git",
       ".github",
-      ".cache",
-      "public",
       ".next",
-      "entry.server.tsx",
+      ".vercel",
+      ".wrangler",
       "build",
-      "worker-configuration.d.ts",
-      "load-context.ts"
+      "docs",
+      "node_modules",
+      "public"
     ]
   },
   "linter": {

@@ -1,9 +1,10 @@
-import { FlatCompat } from '@eslint/eslintrc'
 import eslint from '@eslint/js'
+import pluginNext from '@next/eslint-plugin-next'
+import pluginImport from 'eslint-plugin-import'
 import pluginReact from 'eslint-plugin-react'
 import pluginReactHooks from 'eslint-plugin-react-hooks'
-import testingLibrary from 'eslint-plugin-testing-library'
-import vitest from 'eslint-plugin-vitest'
+import pluginTestingLibrary from 'eslint-plugin-testing-library'
+import pluginVitest from 'eslint-plugin-vitest'
 import globals from 'globals'
 import {
   config as tseslintConfig,
@@ -11,20 +12,6 @@ import {
   parser as tseslintParser,
   plugin as tseslintPlugin,
 } from 'typescript-eslint'
-
-const reactCompat = new FlatCompat({
-  recommendedConfig: pluginReact.configs.recommended,
-})
-
-const reactHooksCompat = new FlatCompat({
-  recommendedConfig: pluginReactHooks.configs.recommended,
-})
-
-const testingLibraryCompat = new FlatCompat({
-  recommendedConfig: {
-    extends: testingLibrary.configs.recommended,
-  },
-})
 
 const baseConfigs = [
   {
@@ -54,32 +41,55 @@ const baseConfigs = [
 const reactConfigs = [
   {
     files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
-    ...reactCompat.config({
-      settings: {
-        react: {
-          version: 'detect',
-        },
+    plugins: {
+      react: pluginReact,
+      'react-hooks': pluginReactHooks,
+      '@next/next': pluginNext,
+    },
+    rules: {
+      ...pluginNext.configs.recommended.rules,
+      ...pluginNext.configs['core-web-vitals'].rules,
+      ...pluginReact.configs.recommended.rules,
+      ...pluginReactHooks.configs.recommended.rules,
+      'react/react-in-jsx-scope': 'off',
+    },
+    settings: {
+      react: {
+        version: 'detect',
       },
-    })[0],
+    },
   },
+]
+
+const importConfigs = [
   {
     files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
-    ...reactHooksCompat.config({
-      settings: {
-        react: {
-          version: 'detect',
+    plugins: { import: pluginImport },
+    rules: {
+      ...pluginImport.configs.recommended.rules,
+    },
+    settings: {
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx', '.cts', '.mts', '.d.ts'],
+      },
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx', '.cts', '.mts', '.d.ts'],
+        },
+        tpyescript: {
+          alwaysTryTypes: true,
         },
       },
-    })[0],
+    },
   },
 ]
 
 const vitestConfigs = [
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],
-    plugins: { vitest },
+    plugins: { vitest: pluginVitest },
     rules: {
-      ...vitest.configs.recommended.rules,
+      ...pluginVitest.configs.recommended.rules,
     },
   },
 ]
@@ -87,25 +97,31 @@ const vitestConfigs = [
 const testingLibraryConfigs = [
   {
     files: ['**/*.test.ts', '**/*.test.tsx'],
-    ...testingLibraryCompat.config({})[0],
+    plugins: {
+      'testing-library': pluginTestingLibrary,
+    },
+    rules: {
+      ...pluginTestingLibrary.configs.react.rules,
+    },
   },
 ]
 
 export default tseslintConfig(
   {
     ignores: [
-      '.next',
-      '**/dist',
-      'node_modules',
-      'build',
       'pnpm-lock.yaml',
-      'app/entry.server.tsx',
-      'functions',
-      'load-context.ts',
-      'worker-configuration.d.ts',
+      '.next',
+      '.vercel',
+      '.wrangler',
+      'build',
+      'dist',
+      'docs',
+      'node_modules',
+      'public',
     ],
   },
   ...baseConfigs,
+  ...importConfigs,
   ...reactConfigs,
   ...vitestConfigs,
   ...testingLibraryConfigs,
