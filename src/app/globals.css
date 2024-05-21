@@ -22,7 +22,13 @@ figure, blockquote, dl, dd {
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
 ol[role='list'] {
-  list-style: none;
+  list-style-type: '';
+  padding: unset;
+}
+
+:where(ul, ol) {
+  list-style-type: '';
+  padding: unset;
 }
 
 /* Set core body defaults */
@@ -81,4 +87,19 @@ textarea:not([rows]) {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 5ex;
+}
+
+/* Enable pan and zoom gestures but disable additional non-standard gestures such as zoom on double-tap */
+:where(button, [type='button'], [type='reset'], [type='submit']) {
+  touch-action: manipulation;
+}
+
+/* As a rule, you should change the cursor to a pointer icon for elements where something is done when you click. */
+:where(:any-link, button, [type='button'], [type='reset'], [type='submit'], label[for], select, summary, [role='tab'], [role='button']) {
+  cursor: pointer;
+}
+
+/* Suppresses focus ring on click and tap while maintaining focus ring on keyboard operation */
+:focus:not(:focus-visible) {
+  outline: none;
 }
