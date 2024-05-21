@@ -3,7 +3,7 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "packageManager": "pnpm@9.1.1",
+  "packageManager": "pnpm@9.1.2",
   "scripts": {
     "build": "remix vite:build",
     "deploy": "pnpm run build && wrangler pages deploy ./build/client",
@@ -30,8 +30,8 @@
   "devDependencies": {
     "@biomejs/biome": "^1.7.3",
     "@cloudflare/workers-types": "^4.20240512.0",
-    "@eslint/eslintrc": "^3.0.2",
-    "@eslint/js": "^9.2.0",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.3.0",
     "@remix-run/dev": "^2.9.2",
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
@@ -42,19 +42,19 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-testing-library": "^6.2.2",
     "eslint-plugin-vitest": "^0.5.4",
-    "globals": "^15.2.0",
+    "globals": "^15.3.0",
     "jsdom": "^24.0.0",
-    "lefthook": "^1.6.11",
+    "lefthook": "^1.6.12",
     "typescript": "^5.4.5",
-    "typescript-eslint": "^7.9.0",
+    "typescript-eslint": "^7.10.0",
     "vite": "^5.2.11",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^1.6.0",
-    "wrangler": "^3.56.0"
+    "wrangler": "^3.57.0"
   },
   "engines": {
     "node": ">=20.13.1",
-    "pnpm": ">=9.1.1",
+    "pnpm": ">=9.1.2",
     "npm": "please use pnpm!",
     "yarn": "please use pnpm!"
   }
