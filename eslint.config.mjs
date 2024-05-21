@@ -76,7 +76,7 @@ const importConfigs = [
         node: {
           extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx', '.cts', '.mts', '.d.ts'],
         },
-        tpyescript: {
+        typescript: {
           alwaysTryTypes: true,
         },
       },
