@@ -13,9 +13,11 @@ import {
   plugin as tseslintPlugin,
 } from 'typescript-eslint'
 
+const exts = '{js,jsx,cjs,mjs,ts,tsx,cts,mts,d.ts}'
+
 const baseConfigs = [
   {
-    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
+    files: [`**/*.${exts}`],
     languageOptions: {
       parser: tseslintParser,
       parserOptions: {
@@ -40,7 +42,7 @@ const baseConfigs = [
 
 const reactConfigs = [
   {
-    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
+    files: [`**/*.${exts}`],
     plugins: {
       react: pluginReact,
       'react-hooks': pluginReactHooks,
@@ -63,7 +65,7 @@ const reactConfigs = [
 
 const importConfigs = [
   {
-    files: ['**/*.{ts,tsx,cts,mts,d.ts}'],
+    files: [`**/*.${exts}`],
     plugins: { import: pluginImport },
     rules: {
       ...pluginImport.configs.recommended.rules,
