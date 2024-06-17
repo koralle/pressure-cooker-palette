@@ -47,7 +47,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-testing-library": "^6.2.2",
     "eslint-plugin-vitest": "^0.5.4",
-    "globals": "^15.4.0",
+    "globals": "^15.6.0",
     "jsdom": "^24.1.0",
     "lefthook": "^1.6.16",
     "typescript": "^5.4.5",
